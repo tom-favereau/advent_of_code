@@ -9,10 +9,41 @@ import (
 )
 
 func main() {
-	part1()
+	//part1()
+	part2()
 }
 
 func part1() {
+	file, err := os.Open("input2.txt")
+	if err != nil {
+		fmt.Println("erreur")
+		return
+	}
+	defer file.Close()
+
+	scanner := bufio.NewScanner(file)
+
+	res := 0
+	for scanner.Scan() {
+		line := scanner.Text()
+		arrayLine := strings.Split(line, "")
+		first := -1
+		end := -1
+		for _, u := range arrayLine {
+			number, er := strconv.Atoi(u)
+			if er == nil {
+				if first == -1 {
+					first = number
+				}
+				end = number
+			}
+		}
+		res += 10*first + end
+	}
+	fmt.Println(res)
+}
+
+func part2() {
 	file, err := os.Open("input.txt")
 	if err != nil {
 		fmt.Println("erreur")
