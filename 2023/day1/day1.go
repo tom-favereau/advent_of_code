@@ -9,12 +9,12 @@ import (
 )
 
 func main() {
-	//part1()
-	part2()
+	part1()
+	//part2()
 }
 
 func part1() {
-	file, err := os.Open("input2.txt")
+	file, err := os.Open("input.txt")
 	if err != nil {
 		fmt.Println("erreur")
 		return
