@@ -10,15 +10,15 @@ import (
 )
 
 func main() {
-	//part1()
-	part2()
+	fmt.Println(part1("input.txt"))
+	fmt.Println(part2("input.txt"))
 }
 
-func part1() {
-	file, err := os.Open("input.txt")
+func part1(string2 string) int {
+	file, err := os.Open(string2)
 	if err != nil {
 		fmt.Println("erreur")
-		return
+		return 0
 	}
 	defer file.Close()
 
@@ -95,15 +95,15 @@ func part1() {
 		nextToSymbol = false
 	}
 
-	fmt.Println(res)
+	return res
 
 }
 
-func part2() {
-	file, err := os.Open("input.txt")
+func part2(string2 string) int {
+	file, err := os.Open(string2)
 	if err != nil {
 		fmt.Println("erreur")
-		return
+		return 0
 	}
 	defer file.Close()
 
@@ -142,7 +142,7 @@ func part2() {
 		}
 	}
 
-	fmt.Println(res)
+	return res
 
 }
 
