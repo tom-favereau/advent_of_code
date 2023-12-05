@@ -33,7 +33,7 @@ func TestPart1(t *testing.T) {
 
 func TestPart2(t *testing.T) {
 	result := part2("input.txt")
-	expected := 34062605
+	expected := 34039469
 
 	if result != expected {
 		t.Errorf("wrong answer, %d, %d", result, expected)

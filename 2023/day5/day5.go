@@ -11,7 +11,7 @@ import (
 func main() {
 	fmt.Println(part1("input.txt"))
 	fmt.Println(part2("input.txt"))
-	fmt.Println(part2("input2.txt"))
+	//fmt.Println(part2("input2.txt"))
 
 }
 
@@ -79,7 +79,11 @@ func part2(string2 string) int {
 				} else if u.a >= source && u.b >= source+step {
 					tmp = append(tmp, Intervale{a: dest + (u.a - source), b: dest + step - 1})
 					res[i].a = source + step
-				} //34039469
+				} else if u.a < source && u.b >= source+step {
+					tmp = append(tmp, Intervale{a: dest, b: dest + step - 1})
+					res = append(res, Intervale{a: u.a, b: source - 1})
+					res[i].a = source + step
+				}
 			}
 		}
 	}
@@ -159,6 +163,10 @@ func part1(string2 string) int {
 					res[i].b = source - 1
 				} else if u.a >= source && u.b >= source+step {
 					tmp = append(tmp, Intervale{a: dest + (u.a - source), b: dest + step - 1})
+					res[i].a = source + step
+				} else if u.a < source && u.b >= source+step {
+					tmp = append(tmp, Intervale{a: dest, b: dest + step - 1})
+					res = append(res, Intervale{a: u.a, b: source - 1})
 					res[i].a = source + step
 				}
 			}
