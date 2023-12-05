@@ -11,6 +11,7 @@ import (
 func main() {
 	fmt.Println(part1("input.txt"))
 	fmt.Println(part2("input.txt"))
+	fmt.Println(part2("input2.txt"))
 
 }
 
@@ -63,7 +64,9 @@ func part2(string2 string) int {
 			source, _ := strconv.Atoi(strings.TrimSpace(arr[1]))
 			step, _ := strconv.Atoi(strings.TrimSpace(arr[2]))
 			for i, u := range res {
-				if u.a >= source && u.b < source+step {
+				if u.a == -1 {
+
+				} else if u.a >= source && u.b < source+step {
 					tmp = append(tmp, Intervale{a: dest + (u.a - source), b: dest + (u.b - source)})
 					res[i] = Intervale{-1, -1}
 				} else if u.b < source {
@@ -76,7 +79,7 @@ func part2(string2 string) int {
 				} else if u.a >= source && u.b >= source+step {
 					tmp = append(tmp, Intervale{a: dest + (u.a - source), b: dest + step - 1})
 					res[i].a = source + step
-				}
+				} //34039469
 			}
 		}
 	}
