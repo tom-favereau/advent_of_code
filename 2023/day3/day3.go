@@ -81,7 +81,6 @@ func part1(string2 string) int {
 				if nextToSymbol {
 					res += currentNumber
 				} else if currentNumber != 0 {
-					fmt.Println(currentNumber, i, j)
 				}
 				currentNumber = 0
 				nextToSymbol = false
