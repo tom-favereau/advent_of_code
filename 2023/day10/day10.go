@@ -98,33 +98,36 @@ func part2(string2 string) int {
 	loop = append(loop, utils.Pos{18, 74})
 	loop = Loop(grid, utils.Pos{19, 74}, "right", loop)
 
-	res := 0
-	for i := 0; i < p.Y; i++ {
-		for j := 0; j < p.X; j++ {
-			if !contain(loop, utils.Pos{j, i}) {
-				inx := false
-				for k := j; k < p.X; k++ {
-					if contain(loop, utils.Pos{k, i}) && grid[utils.Pos{k, i}] == "|" {
-						inx = !inx
+	/*
+		res := 0
+		for i := 0; i < p.Y; i++ {
+			for j := 0; j < p.X; j++ {
+				if !contain(loop, utils.Pos{j, i}) {
+					inx := false
+					for k := j; k < p.X; k++ {
+						if contain(loop, utils.Pos{k, i}) && grid[utils.Pos{k, i}] == "|" {
+							inx = !inx
+						}
 					}
-				}
-				iny := false
-				for k := i; k < p.Y; k++ {
-					if contain(loop, utils.Pos{j, k}) && grid[utils.Pos{j, k}] == "-" {
-						iny = !iny
+					iny := false
+					for k := i; k < p.Y; k++ {
+						if contain(loop, utils.Pos{j, k}) && grid[utils.Pos{j, k}] == "-" {
+							iny = !iny
+						}
 					}
-				}
-				if !inx || !iny {
+					if !inx || !iny {
 
-				} else {
-					res++
+					} else {
+						res++
+					}
 				}
 			}
 		}
-	}
+
+	*/
 
 	aire := Aire(loop)
-	res = aire - len(loop)/2 + 1
+	res := aire - len(loop)/2 + 1
 
 	return res
 }

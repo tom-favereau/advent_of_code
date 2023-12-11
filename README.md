@@ -87,9 +87,9 @@ I learn a new way to extend additive sequence
 difficile j'ai perdu trop de temps dans un code ilisible que j'arrvé plus à refaire
 pensé à faire de commit régulier pour pas perdre son code
 
-| Part1 | Part2  | 
-|-------|--------|
-| 0.634 ms | 612 ms |
+| Part1    | Part2    | 
+|----------|----------|
+| 0.604 ms | 0.609 ms |
 
 ## day 11 
 
