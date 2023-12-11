@@ -1,16 +1,16 @@
 let string_to_list str = str |> String.to_seq |> List.of_seq;;
 
 let rec traitement line = match line with 
-        | '0'::q -> 0
-        | '1'::q -> 1
-        | '2'::q -> 2
-        | '3'::q -> 3
-        | '4'::q -> 4
-        | '5'::q -> 5
-        | '6'::q -> 6
-        | '7'::q -> 7
-        | '8'::q -> 8
-        | '9'::q -> 8
+        | '0'::_ -> 0
+        | '1'::_ -> 1
+        | '2'::_ -> 2
+        | '3'::_ -> 3
+        | '4'::_ -> 4
+        | '5'::_ -> 5
+        | '6'::_ -> 6
+        | '7'::_ -> 7
+        | '8'::_ -> 8
+        | '9'::_ -> 9
         | _::q -> traitement q 
         | _ -> 0
 
@@ -26,7 +26,8 @@ let part1 file_name =
       try
         let line = input_line channel in
         let li = string_to_list line in
-        let tmp = (traitement li)*10 + (traitement (List.rev li)) in  
+        let num1 = traitement li in let num2 = traitement (List.rev li) in
+        let tmp = num1*10 + num2 in
         read_lines res+tmp 
       with
       | End_of_file -> (close_in channel; res)
@@ -41,4 +42,8 @@ let part1 file_name =
 
                       
 
-print_int (part1 "input2.txt");;
+print_int (part1 "inputs/input_test01.txt");;
+print_endline "";;
+print_int (part1 "inputs/input01.txt");;
+print_endline "";;
+

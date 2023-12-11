@@ -1,0 +1,11 @@
+(executable
+ (name day1)
+ (libraries AOC_ocaml_lib)
+ (modules Day1))
+
+(executable
+ (name day2)
+ (libraries AOC_ocaml_lib)
+ (modules Day2))
+
+

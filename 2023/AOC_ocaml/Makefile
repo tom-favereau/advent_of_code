@@ -1,0 +1,4 @@
+main :
+	dune build
+
+
