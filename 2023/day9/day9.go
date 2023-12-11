@@ -14,11 +14,6 @@ func main() {
 	//fmt.Println(part2("input2.txt"))
 }
 
-type Choix struct {
-	g string
-	d string
-}
-
 func part1(string2 string) int {
 	file, err := os.Open(string2)
 	if err != nil {
