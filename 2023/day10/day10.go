@@ -13,6 +13,28 @@ func main() {
 	fmt.Println(part2("input.txt"))
 }
 
+func Aire(points []utils.Pos) int {
+	n := len(points)
+	if n < 3 {
+		return 0.0
+	}
+
+	aire := 0
+
+	for i := 0; i < n; i++ {
+		x1, y1 := points[i].X, points[i].Y
+		x2, y2 := points[(i+1)%n].X, points[(i+1)%n].Y
+		aire += (x1*y2 - x2*y1)
+	}
+
+	aire = int(0.5 * float64(aire))
+	if aire < 0 {
+		aire = -aire
+	}
+
+	return aire
+}
+
 func part1(string2 string) int {
 	file, err := os.Open(string2)
 	if err != nil {
@@ -100,6 +122,9 @@ func part2(string2 string) int {
 			}
 		}
 	}
+
+	aire := Aire(loop)
+	res = aire - len(loop)/2 + 1
 
 	return res
 }
