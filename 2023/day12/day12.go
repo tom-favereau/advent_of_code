@@ -36,10 +36,12 @@ func part1(string2 string) int {
 			num = append(num, n)
 		}
 
-		res += f(arr, num, 0, true)
+		t := f(arr, num, 0, true)
+		fmt.Println(t)
+		res += t
 
 	}
-
+	fmt.Println("////////")
 	return res
 }
 
@@ -81,7 +83,6 @@ func part2(string2 string) int {
 		res += f2(arr, num, 0, 0, 0, opt)
 
 	}
-
 	return res
 }
 
@@ -148,7 +149,8 @@ type Info struct {
 func f2(arr []string, num []int, i1, i2, tmp int, opt map[Info]int) int {
 	k := Info{i1, i2, tmp}
 
-	if val, ok := opt[k]; ok {
+	val, ok := opt[k]
+	if ok {
 		return val
 	}
 
@@ -164,15 +166,21 @@ func f2(arr []string, num []int, i1, i2, tmp int, opt map[Info]int) int {
 
 	ans := 0
 
-	if arr[i1] == "." || arr[i1] == "?" {
+	if arr[i1] == "?" {
 		if tmp == 0 {
 			ans += f2(arr, num, i1+1, i2, 0, opt)
-		} else if tmp > 0 && i2 < len(num) && num[i2] == tmp {
+		} else if i2 < len(num) && num[i2] == tmp {
 			ans += f2(arr, num, i1+1, i2+1, 0, opt)
 		}
-	}
+		ans += f2(arr, num, i1+1, i2, tmp+1, opt)
 
-	if arr[i1] == "#" || arr[i1] == "?" {
+	} else if arr[i1] == "." {
+		if tmp == 0 {
+			ans += f2(arr, num, i1+1, i2, 0, opt)
+		} else if i2 < len(num) && num[i2] == tmp {
+			ans += f2(arr, num, i1+1, i2+1, 0, opt)
+		}
+	} else if arr[i1] == "#" {
 		ans += f2(arr, num, i1+1, i2, tmp+1, opt)
 	}
 
