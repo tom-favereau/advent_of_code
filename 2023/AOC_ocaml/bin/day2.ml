@@ -25,8 +25,6 @@ let rec doPart1 l = match l with
                         | Some 'n' -> aux q r (g+num) b
                         | _ -> false
             in (aux (split h ",") 0 0 0) && (doPart1 t)
-
-
 ;;
 
 let rec doPart2 l = match l with 
@@ -43,10 +41,7 @@ let rec doPart2 l = match l with
             in 
             let r1, g1, b1 = (aux (split h ",") 0 0 0) in 
             let r2, g2, b2 = (doPart2 t) in max r1 r2, max g1 g2, max b1 b2
-
-
 ;;
-
 
 let pars file_name =
   try
@@ -65,9 +60,6 @@ let pars file_name =
   with
   | Sys_error err ->( print_endline ("Error: " ^ err); 0, 0)
 ;;
-
-
                       
-
 let a, b = (pars "inputs/input_test02.txt") in (print_int a; print_string " "; print_int b;  print_endline "");;
 let a, b = (pars "inputs/input02.txt") in (print_int a; print_string " "; print_int b; print_endline "");;
