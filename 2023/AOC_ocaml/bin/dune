@@ -8,4 +8,8 @@
  (libraries AOC_ocaml_lib)
  (modules Day2))
 
+(executable
+ (name day12)
+ (libraries AOC_ocaml_lib)
+ (modules Day12))
 
