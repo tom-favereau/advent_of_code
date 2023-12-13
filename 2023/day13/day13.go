@@ -9,7 +9,7 @@ import (
 )
 
 func main() {
-	fmt.Println(part1("input.txt"))
+	fmt.Println(part1("input2.txt"))
 	fmt.Println(part2opt("input.txt"))
 }
 
@@ -32,6 +32,7 @@ func part1(string2 string) int {
 	for scanner.Scan() {
 		line := scanner.Text()
 		if line == "" {
+			end := false
 			for k := 0; k < j-1; k++ {
 				isSym := true
 				for l := 0; l < j; l++ {
@@ -41,30 +42,42 @@ func part1(string2 string) int {
 						if b1 && b2 {
 							if v1 != v2 {
 								isSym = false
+								break
 							}
 						}
+					}
+					if !isSym {
+						break
 					}
 				}
 				if isSym {
 					res += k + 1
+					end = true
+					break
 				}
 			}
-
-			for k := 0; k < i-1; k++ {
-				isSym := true
-				for l := 0; l < i; l++ {
-					for s := 0; s < j; s++ {
-						v1, b1 := grid[utils.Pos{s, k - l}]
-						v2, b2 := grid[utils.Pos{s, k + l + 1}]
-						if b1 && b2 {
-							if v1 != v2 {
-								isSym = false
+			if !end {
+				for k := 0; k < i-1; k++ {
+					isSym := true
+					for l := 0; l < i; l++ {
+						for s := 0; s < j; s++ {
+							v1, b1 := grid[utils.Pos{s, k - l}]
+							v2, b2 := grid[utils.Pos{s, k + l + 1}]
+							if b1 && b2 {
+								if v1 != v2 {
+									isSym = false
+									break
+								}
 							}
 						}
+						if !isSym {
+							break
+						}
 					}
-				}
-				if isSym {
-					res += (k + 1) * 100
+					if isSym {
+						res += (k + 1) * 100
+						break
+					}
 				}
 			}
 			grid = utils.NewGrid[string]()
@@ -80,7 +93,7 @@ func part1(string2 string) int {
 			i++
 		}
 	}
-
+	end := false
 	for k := 0; k < j-1; k++ {
 		isSym := true
 		for l := 0; l < j; l++ {
@@ -90,32 +103,42 @@ func part1(string2 string) int {
 				if b1 && b2 {
 					if v1 != v2 {
 						isSym = false
+						break
 					}
 				}
+			}
+			if !isSym {
+				break
 			}
 		}
 		if isSym {
 			res += k + 1
+			end = true
 			break
 		}
 	}
-
-	for k := 0; k < i-1; k++ {
-		isSym := true
-		for l := 0; l < i; l++ {
-			for s := 0; s < j; s++ {
-				v1, b1 := grid[utils.Pos{s, k - l}]
-				v2, b2 := grid[utils.Pos{s, k + l + 1}]
-				if b1 && b2 {
-					if v1 != v2 {
-						isSym = false
+	if !end {
+		for k := 0; k < i-1; k++ {
+			isSym := true
+			for l := 0; l < i; l++ {
+				for s := 0; s < j; s++ {
+					v1, b1 := grid[utils.Pos{s, k - l}]
+					v2, b2 := grid[utils.Pos{s, k + l + 1}]
+					if b1 && b2 {
+						if v1 != v2 {
+							isSym = false
+							break
+						}
 					}
 				}
+				if !isSym {
+					break
+				}
 			}
-		}
-		if isSym {
-			res += (k + 1) * 100
-			break
+			if isSym {
+				res += (k + 1) * 100
+				break
+			}
 		}
 	}
 
@@ -151,8 +174,12 @@ func part2(string2 string) int {
 						if b1 && b2 {
 							if v1 != v2 {
 								isSym = false
+								break
 							}
 						}
+					}
+					if !isSym {
+						break
 					}
 				}
 				if isSym {
@@ -356,6 +383,7 @@ func part2opt(string2 string) int {
 	for scanner.Scan() {
 		line := scanner.Text()
 		if line == "" {
+			end := false
 			for k := 0; k < j-1; k++ {
 				nb_diff := 0
 				for l := 0; l < j; l++ {
@@ -365,30 +393,47 @@ func part2opt(string2 string) int {
 						if b1 && b2 {
 							if v1 != v2 {
 								nb_diff++
+								if nb_diff > 1 {
+									break
+								}
 							}
 						}
+					}
+					if nb_diff > 1 {
+						break
 					}
 				}
 				if nb_diff == 1 {
 					res += k + 1
+					end = true
+					break
 				}
 			}
 
-			for k := 0; k < i-1; k++ {
-				nb_diff := 0
-				for l := 0; l < i; l++ {
-					for s := 0; s < j; s++ {
-						v1, b1 := grid[utils.Pos{s, k - l}]
-						v2, b2 := grid[utils.Pos{s, k + l + 1}]
-						if b1 && b2 {
-							if v1 != v2 {
-								nb_diff++
+			if !end {
+				for k := 0; k < i-1; k++ {
+					nb_diff := 0
+					for l := 0; l < i; l++ {
+						for s := 0; s < j; s++ {
+							v1, b1 := grid[utils.Pos{s, k - l}]
+							v2, b2 := grid[utils.Pos{s, k + l + 1}]
+							if b1 && b2 {
+								if v1 != v2 {
+									nb_diff++
+									if nb_diff > 1 {
+										break
+									}
+								}
 							}
 						}
+						if nb_diff > 1 {
+							break
+						}
 					}
-				}
-				if nb_diff == 1 {
-					res += (k + 1) * 100
+					if nb_diff == 1 {
+						res += (k + 1) * 100
+						break
+					}
 				}
 			}
 			grid = utils.NewGrid[string]()
@@ -405,6 +450,7 @@ func part2opt(string2 string) int {
 		}
 	}
 
+	end := false
 	for k := 0; k < j-1; k++ {
 		nb_diff := 0
 		for l := 0; l < j; l++ {
@@ -414,32 +460,46 @@ func part2opt(string2 string) int {
 				if b1 && b2 {
 					if v1 != v2 {
 						nb_diff++
+						if nb_diff > 1 {
+							break
+						}
 					}
 				}
+			}
+			if nb_diff > 1 {
+				break
 			}
 		}
 		if nb_diff == 1 {
 			res += k + 1
+			end = true
 			break
 		}
 	}
-
-	for k := 0; k < i-1; k++ {
-		nb_diff := 0
-		for l := 0; l < i; l++ {
-			for s := 0; s < j; s++ {
-				v1, b1 := grid[utils.Pos{s, k - l}]
-				v2, b2 := grid[utils.Pos{s, k + l + 1}]
-				if b1 && b2 {
-					if v1 != v2 {
-						nb_diff++
+	if !end {
+		for k := 0; k < i-1; k++ {
+			nb_diff := 0
+			for l := 0; l < i; l++ {
+				for s := 0; s < j; s++ {
+					v1, b1 := grid[utils.Pos{s, k - l}]
+					v2, b2 := grid[utils.Pos{s, k + l + 1}]
+					if b1 && b2 {
+						if v1 != v2 {
+							nb_diff++
+							if nb_diff > 1 {
+								break
+							}
+						}
 					}
 				}
+				if nb_diff > 1 {
+					break
+				}
 			}
-		}
-		if nb_diff == 1 {
-			res += (k + 1) * 100
-			break
+			if nb_diff == 1 {
+				res += (k + 1) * 100
+				break
+			}
 		}
 	}
 

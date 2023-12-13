@@ -46,11 +46,13 @@ func BenchmarkPart1(b *testing.B) {
 	}
 }
 
+/*
 func BenchmarkPart2(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		part2("input.txt")
 	}
 }
+*/
 
 func BenchmarkPart2opt(b *testing.B) {
 	for i := 0; i < b.N; i++ {
