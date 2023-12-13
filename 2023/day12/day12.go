@@ -37,11 +37,9 @@ func part1(string2 string) int {
 		}
 
 		t := f(arr, num, 0, true)
-		fmt.Println(t)
 		res += t
 
 	}
-	fmt.Println("////////")
 	return res
 }
 

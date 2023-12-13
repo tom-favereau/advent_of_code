@@ -101,6 +101,26 @@ not realy optimised
 | 101.4 ms | 105.2 ms |
 
 
+## day 12
+
+Done part1 and part2
+part 1 avec élagation 
+part 2 avec programation dynamique, je sais pas si tout les paramètre mémorisé sont utile
+
+| Part1   | Part2   | 
+|---------|---------|
+| 15.34ms | 32.9 ms |
+
+## day 13
+
+Done part1 and part2
+part 1 avec élagation
+part 2 avec programation dynamique, je sais pas si tout les paramètre mémorisé sont utile
+
+| Part1   | Part2   | 
+|---------|---------|
+| 3.47 ms | 40.4 ms |
+
 
 
 
