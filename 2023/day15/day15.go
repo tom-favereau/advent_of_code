@@ -27,23 +27,19 @@ func part1(string2 string) int {
 	scanner.Scan()
 	line := scanner.Text()
 
-	arr := strings.Split(line, ",")
-
 	res := 0
-	for _, u := range arr {
-		l := strings.Split(u, "")
-		tmp := 0
-		for _, t := range l {
-			asc := int(t[0])
-			tmp += asc
+	var tmp byte = 0
+	for i, u := range line {
+		if u != ',' && u != '\n' {
+			tmp += line[i]
 			tmp *= 17
-			tmp = tmp % 256
-
+		} else {
+			res += int(tmp)
+			tmp = 0
 		}
-		res += tmp
 	}
+	return res + int(tmp)
 
-	return res
 }
 
 func part2(string2 string) int {

@@ -13,3 +13,9 @@
  (libraries AOC_ocaml_lib)
  (modules Day12))
 
+
+(executable
+ (name day15)
+ (libraries AOC_ocaml_lib)
+ (modules Day15))
+
