@@ -79,6 +79,7 @@ func part2(string2 string) int {
 		opt := make(map[Info]int)
 
 		res += f2(arr, num, 0, 0, 0, opt)
+		//res += f3(arr, num, 0, true, opt)
 
 	}
 	return res
@@ -184,4 +185,74 @@ func f2(arr []string, num []int, i1, i2, tmp int, opt map[Info]int) int {
 
 	opt[k] = ans
 	return ans
+}
+
+func f3(arr []string, num []int, tmp int, first bool, opt map[Info]int) int {
+	r, b := opt[Info{len(arr), len(num), tmp}]
+	if b {
+		return r
+	} else if len(arr) == 0 {
+		if len(num) == 0 {
+			opt[Info{len(arr), len(num), tmp}] = 1
+			return 1
+		} else {
+			opt[Info{len(arr), len(num), tmp}] = 0
+			return 0
+		}
+	} else if len(num) == 0 {
+		for _, u := range arr {
+			if u == "#" {
+				opt[Info{len(arr), len(num), tmp}] = 0
+				return 0
+			}
+		}
+		return 1
+	} else {
+		if arr[0] == "#" {
+			if tmp+1 > num[0] {
+				return 0
+			} else {
+				if len(arr) == 1 {
+					if len(num) == 1 && num[0] == tmp+1 {
+						opt[Info{len(arr), len(num), tmp}] = 1
+						return 1
+					} else {
+						opt[Info{len(arr), len(num), tmp}] = 0
+						return 0
+					}
+				} else {
+					res := f3(arr[1:], num, tmp+1, false, opt)
+					opt[Info{len(arr), len(num), tmp}] = res
+					return res
+				}
+			}
+		} else if arr[0] == "." {
+			if first {
+				res := f3(arr[1:], num, 0, first, opt)
+				opt[Info{len(arr), len(num), tmp}] = res
+				return res
+			} else {
+				if tmp < num[0] {
+					opt[Info{len(arr), len(num), tmp}] = 0
+					return 0
+				} else {
+					res := f3(arr[1:], num[1:], 0, true, opt)
+					opt[Info{len(arr), len(num), tmp}] = res
+					return res
+				}
+			}
+		} else if arr[0] == "?" {
+			c1 := make([]string, len(arr))
+			c2 := make([]string, len(arr))
+			copy(c1, arr)
+			c1[0] = "#"
+			copy(c2, arr)
+			c2[0] = "."
+			r1 := f(c1, num, tmp, false)
+			r2 := f(c2, num, tmp, first)
+			opt[Info{len(arr), len(num), tmp}] = r1 + r2
+			return r1 + r2
+		}
+	}
+	return tmp
 }
