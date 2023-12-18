@@ -12,7 +12,7 @@ import (
 func main() {
 	fmt.Println(part1("input.txt"))
 	fmt.Println("///")
-	fmt.Println(part2("input.txt"))
+	fmt.Println(part2("input2.txt"))
 	//fmt.Println(part2("input2.txt"))
 }
 

@@ -114,13 +114,58 @@ part 2 avec programation dynamique, je sais pas si tout les paramètre mémoris�
 ## day 13
 
 Done part1 and part2
-part 1 avec élagation
-part 2 avec programation dynamique, je sais pas si tout les paramètre mémorisé sont utile
+le cours de management permet de trouver de très bonne astuce comme 
+s'aréter s'il n'y a qu'une diférence pour la partie 2
 
 | Part1   | Part2   | 
 |---------|---------|
-| 3.47 ms | 40.4 ms |
+| 4.03 ms | 4.56 ms |
+
+## day 14
+
+Done part1 and part2
+HORRIBLE 
+j'ai pas aimé du tout, ne pas tenir compte de ce problème dans la notation, je suis même plus sur qu'il soit fonctionel
+et je ne veux plus jamais y toucher.
 
 
 
+## day 15
 
+Done part1 and part2
+Implémentation d'une hashmap, on doit sans doute pouvoir utilisé une hashmap buildin
+
+
+| Part1   | Part2   | 
+|---------|---------|
+| 0.92 ms | 2.84 ms |
+
+## day 16
+
+Done part1 and part2
+On récupère le jour 10 part 1 on fait un DFS avec des direction
+
+| Part1   | Part2  | 
+|---------|--------|
+| 3.98 ms | 716 ms |
+
+
+## day 17
+
+Done part1 and part2
+on fait un dijikstra en 4D en définissant les états comme i, j, position, longueur parcurus dans cette direction
+et on vérifie les condition au borne c'est a dire, 0 < i < X, 0 < j < Y et 0 < longueur < 4 etc ..
+idem pour la partie 4
+
+| Part1   | Part2   | 
+|---------|---------|
+| 4760 ms | 4590 ms |
+
+## day 18
+
+Done part1 and part2
+on reprend la partie 2 du jour 10 formule de l'arpenteur + formule de pick
+
+| Part1    | Part2    | 
+|----------|----------|
+| 0.132 ms | 0.273 ms |
