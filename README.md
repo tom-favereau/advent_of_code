@@ -191,3 +191,15 @@ on reprend la partie 2 du jour 10 formule de l'arpenteur + formule de pick
 | Part1    | Part2    | 
 |----------|----------|
 | 0.132 ms | 0.273 ms |
+
+
+## day 19
+
+Done part1 and part2
+très enuyeux, juste on problème avec du parsing, rien d'intéréssant. on reprend les intervalle du jour 5 rien de plus a 
+noter 
+
+
+| Part1   | Part2   | 
+|---------|---------|
+| 8.50 ms | 2.52 ms |
