@@ -17,8 +17,6 @@ let rec traitement line = match line with
 ;;
 
 
-
-
 let part1 file_name =
   try
     let channel = open_in file_name in
@@ -36,11 +34,6 @@ let part1 file_name =
   with
   | Sys_error err ->( print_endline ("Error: " ^ err); 0)
 ;;
-
-
-
-
-                      
 
 print_int (part1 "inputs/input_test01.txt");;
 print_endline "";;
