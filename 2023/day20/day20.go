@@ -12,9 +12,7 @@ func main() {
 	fmt.Println(part1("input.txt"))
 	//fmt.Println("///")
 	fmt.Println(part2("input.txt"))
-	//pour la partie 2 j'ai pas trouvé d'algo, les cycle sont trouvé a partir
 	// du graphe, valeur : 3739 3821 3943 4001
-	// EN FAIT ÇA MARCHE
 	//fmt.Println(part2("input2.txt"))
 
 }
