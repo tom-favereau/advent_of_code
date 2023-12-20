@@ -11,9 +11,10 @@ import (
 func main() {
 	fmt.Println(part1("input.txt"))
 	//fmt.Println("///")
-	//fmt.Println(part2("input.txt"))
+	fmt.Println(part2("input.txt"))
 	//pour la partie 2 j'ai pas trouvé d'algo, les cycle sont trouvé a partir
 	// du graphe, valeur : 3739 3821 3943 4001
+	// EN FAIT ÇA MARCHE
 	//fmt.Println(part2("input2.txt"))
 
 }
@@ -90,8 +91,8 @@ func part2(string2 string) int {
 		}
 	}
 
-	solveP2(m)
-	return 0
+	res := solveP2(m)
+	return res
 }
 
 // modifier l'ordre dans lequel on fait les opération ....
@@ -169,7 +170,7 @@ func solve(m map[string]Module) Pair {
 	return Pair{hight: hight, low: low}
 }
 
-func solveP2(m map[string]Module) {
+func solveP2(m map[string]Module) int {
 	i1 := 0
 	i2 := 0
 	i3 := 0
@@ -224,17 +225,17 @@ func solveP2(m map[string]Module) {
 					tmp = tmp && u
 				}
 				if tmp {
-					if key == "mj" && i1 != 0 {
-						fmt.Println("mj", index)
+					if key == "mj" && i1 == 0 {
+						//fmt.Println("mj", index)
 						i1 = index
-					} else if key == "rd" && i2 != 0 {
-						fmt.Println("rd", index)
+					} else if key == "rd" && i2 == 0 {
+						//fmt.Println("rd", index)
 						i2 = index
-					} else if key == "qs" && i3 != 0 {
-						fmt.Println("qs", index)
+					} else if key == "qs" && i3 == 0 {
+						//fmt.Println("qs", index)
 						i3 = index
-					} else if key == "cs" && i4 != 0 {
-						fmt.Println("cs", index)
+					} else if key == "cs" && i4 == 0 {
+						//fmt.Println("cs", index)
 						i4 = index
 					}
 					for _, u := range mod.next {
@@ -250,6 +251,7 @@ func solveP2(m map[string]Module) {
 			}
 		}
 	}
+	return i1 * i2 * i3 * i4
 }
 
 type Module struct {
