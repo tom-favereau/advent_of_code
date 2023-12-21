@@ -154,13 +154,10 @@ func solveP24real(g [][]string, ps P) int {
 			}
 		}
 	}
-	x0 := end
-	x1 := end + len(g)
-	x2 := end + 2*len(g)
 
-	x := []float64{float64(x0), float64(x1), float64(x2)}
+	x := []float64{0, 1, 2}
 	y := []float64{float64(firstPoint), float64(secondPoint), float64(thirdPoint)}
-	fmt.Println(lagrangeInterpolation(x, y, float64(x0)))
+	//fmt.Println(lagrangeInterpolation(x, y, float64(x0)))
 	res := lagrangeInterpolation(x, y, float64(sizeDiamond))
 
 	return int(res)
