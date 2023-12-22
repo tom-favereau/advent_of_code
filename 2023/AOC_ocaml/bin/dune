@@ -9,6 +9,11 @@
  (modules Day2))
 
 (executable
+ (name day3)
+ (libraries AOC_ocaml_lib)
+ (modules Day3))
+
+(executable
  (name day4)
  (libraries AOC_ocaml_lib)
  (modules Day4))
@@ -18,18 +23,10 @@
  (libraries AOC_ocaml_lib)
  (modules Day4oneline))
 
-
-(executable
- (name day6)
- (libraries AOC_ocaml_lib)
- (modules Day6))
-
-
 (executable
  (name day12)
  (libraries AOC_ocaml_lib)
  (modules Day12))
-
 
 (executable
  (name day15)
@@ -40,7 +37,6 @@
  (name day18)
  (libraries AOC_ocaml_lib)
  (modules Day18))
-
 
 (executable
  (name day19)

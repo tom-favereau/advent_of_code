@@ -203,3 +203,43 @@ noter
 | Part1   | Part2   | 
 |---------|---------|
 | 8.50 ms | 2.52 ms |
+
+## day 20
+
+Done part1 and part2
+jour difficile en grande partie car il fallait regarder l'input, j'ai discuté avec victor ce qui m'a permis d'avoir la bonne aproche 
+comme j'avais un bug que je ne trouvais pas (un != à la place d'un ==) je suis allé sur disocrd et j'ai vue les graphes 
+j'ai donc résolue le problème comme ça. une fois le problème validé j'ai repris mon programme et coriggé l'erreur rapidement.
+on trouve les longueur des cycle et on fait le ppcm (un produit suffit car il sont premier)
+
+
+
+| Part1   | Part2   | 
+|---------|---------|
+| 10.4 ms | 34.4 ms |
+
+## day 21
+
+Done part1 and part2
+très dur, j'ateint mes limites, je n'ai pas trouvé d'algorithme, 
+au départ je n'ai rien trouvé après être allé sur reddit j'ai vue une animation 
+ma première approche a était de considéré le diamand calculer sont aire
+donné par la formule 2*(x**2)-2*x (somme des nombres impaire * 2 - la ligne du millieux)
+après avoir galéré pendant 5 bonnes heure j'ai finis par validé. 
+puisque c'est polynomial on pouvais aussi interpoler sur les 3 première valeur (encore fallait il le voir venir) 
+par conséquent après avoir visité reddit j'ai implémenter les polynome de lagrange pour avoir un code
+néamoins je ne considère pas ça comme un vrais algorithme et je serais curieux de savoir ce qu'on fait les autre.
+**pour l'intant je ne vais pas voir je cherche encore**
+
+
+
+
+## day 22
+
+Done part1 and part2
+assez facile, rien de bien méchant, l'optimiser est peux être plus dur, mais à ce stade du mois je ne cherche plus trop a optimiser
+
+
+| Part1  | Part2  | 
+|--------|--------|
+| 152 ms | 686 ms |
