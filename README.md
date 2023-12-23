@@ -29,6 +29,9 @@ cpu: Intel(R) Core(TM) i5-1030NG7 CPU @ 1.10GHz
 ## day1
 done part one and part two, easy
 I learn to pars an input
+Nothing special to report today. There was the "twone" trap, but I didn't handle it in a way that could have 
+led me into the trap. There's an issue with the snow production, and the elves are catapulting us to an island 
+to investigate.
 
 benchmark :
 
@@ -38,6 +41,7 @@ benchmark :
 
 ## day2
 done part one and part two, easy
+Very straightforward today. Context: We arrive on the Snow Island and play the lottery with the elves.
 
 | Part1    | Part2    | 
 |----------|----------|
@@ -45,6 +49,8 @@ done part one and part two, easy
 
 ## day3
 done part one and part two, medium
+pFirst real challenge today. I spent a lot of time on it, much more
+than I should have. On this day, we have to fix the cable car.
 
 | Part1    | Part2    | 
 |----------|----------|
@@ -53,7 +59,8 @@ done part one and part two, medium
 
 ## day4 
 done part one and part tow, easy
-I must read more attentively the subject 
+IVery easy – I had time to do it during breakfast, except that I can't read instructions. 
+We're playing with the elves, and we're going to visit the gardener.
 
 | Part1    | Part2    | 
 |----------|----------|
@@ -61,9 +68,9 @@ I must read more attentively the subject
 
 
 ## day5 
-done part1 and part2, difficult
-
-nice solution
+done part1 and part2,
+I immediately thought of intervals, but I still wanted to try brute force. The day was quite challenging, 
+I believe, but I'm happy with my solution. We're helping the gardener plant seeds.
 
 | Part1    | Part2    | 
 |----------|----------|
@@ -71,6 +78,8 @@ nice solution
 
 ## day6 
 done part1 and part2, very easy
+The biggest challenge was adjusting the precision of my calculator; I probably could have done it more quickly by 
+coding the solution from the start. Today, we're having boat races with the elves.
 
 | Part1    | Part2    | 
 |----------|----------|
@@ -78,7 +87,8 @@ done part1 and part2, very easy
 
 ## day7 
 done part1 and part2
-I learn how to use the sort package 
+A fun problem – I learned how to do a sort. The case (J, J, J, J, J) escaped me, and I lost a bit of time. 
+We're playing poker with an elf in the desert.
 
 | Part1    | Part2    | 
 |----------|----------|
@@ -87,7 +97,8 @@ I learn how to use the sort package
 ## day8
 
 done part1 and part2
-it was not supposed to work
+It wasn't supposed to work, but since I have the brain of an oyster, I didn't realize it, 
+which turned out to be lucky for me. We're trying to escape a sandstorm.
 
 | Part1    | Part2    |
 |----------|----------|
@@ -98,7 +109,8 @@ it was not supposed to work
 done part1 and part2
 
 I learn a new way to extend additive sequence
-
+It was a method I had never encountered before and very interesting, but apart from that, the problem practically 
+solves itself. We're doing ecology in the oasis, and I didn't understand a thing.
 
 | Part1    | Part2    | 
 |----------|----------|
@@ -109,6 +121,9 @@ I learn a new way to extend additive sequence
 difficile j'ai perdu trop de temps dans un code ilisible que j'arrvé plus à refaire
 pensé à faire de commit régulier pour pas perdre son code
 
+je l'ai d'abord fait avec un dfs modifié, cela dit après avoir perdu mon code je l'ai rafait avec shoelace et le théorème de pick
+j'adore le théorème de pick mais je n'avais jamais eu l'ocasion de l'utiliser 
+
 | Part1    | Part2    | 
 |----------|----------|
 | 0.604 ms | 0.609 ms |
@@ -116,7 +131,7 @@ pensé à faire de commit régulier pour pas perdre son code
 ## day 11 
 
 Done part1 and part2
-not realy optimised 
+très facile, aucune dificulté sur la p1 ni la p2 (j'ai juste rajouté 100000.. beaucoup a la place 2)
 
 | Part1    | Part2    | 
 |----------|----------|
@@ -128,6 +143,8 @@ not realy optimised
 Done part1 and part2
 part 1 avec élagation 
 part 2 avec programation dynamique, je sais pas si tout les paramètre mémorisé sont utile
+je sais jamais quand utilisé la programation dynamique et ça me fait en général peur ce genre de problème
+je suis asser content de ma solution
 
 | Part1   | Part2   | 
 |---------|---------|
@@ -243,3 +260,13 @@ assez facile, rien de bien méchant, l'optimiser est peux être plus dur, mais �
 | Part1  | Part2  | 
 |--------|--------|
 | 152 ms | 686 ms |
+
+## day 23
+
+Done part1 and part2
+le problème etait rigolo, je me souvenais plus que c'était NP-hard au final j'ai fait une condensation du graphe. c'est pas hyper
+opti mais ça suffit. j'y reviandrai pour essayer de l'avoir en moins d'une seconde  
+
+| Part1  | Part2  | 
+|--------|--------|
+| 397 ms | 4.30 s |
