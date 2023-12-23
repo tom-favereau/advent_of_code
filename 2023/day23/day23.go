@@ -10,7 +10,7 @@ import (
 func main() {
 	fmt.Println(part1("input.txt"))
 	//fmt.Println("///")
-	fmt.Println(part2("input2.txt"))
+	fmt.Println(part2("input.txt"))
 	//fmt.Println(part2("input2.txt"))
 
 }
@@ -100,44 +100,6 @@ func findLongestPath(maze [][]string, start [2]int, end [2]int) int {
 	dfs(start, 0, visited)
 
 	return maxPathLength
-}
-
-func findLongestPath2(maze [][]string, start [2]int, end [2]int) int {
-	var dfs func([2]int, int, map[[2]int]bool)
-	maxPathLength := 0
-	dfs = func(current [2]int, pathLength int, visited map[[2]int]bool) {
-		// Arrêt de la récursion si on atteint la sortie
-		if current == end {
-			if pathLength > maxPathLength {
-				maxPathLength = pathLength
-			}
-			return
-		}
-
-		// Marquer la case actuelle comme visitée
-		visited[current] = true
-
-		// Explorer les cases voisines non visitées
-		for _, neighbor := range neighbors2(current, maze) {
-			if !visited[neighbor] {
-				dfs(neighbor, pathLength+1, visited)
-			}
-		}
-
-		// Retirer la marque de la case actuelle pour permettre d'autres explorations
-		delete(visited, current)
-	}
-
-	maxPathLength = 0
-	visited := make(map[[2]int]bool)
-	dfs(start, 0, visited)
-
-	return maxPathLength
-}
-
-type Node struct {
-	p1 [2]int
-	p2 [2]int
 }
 
 type Edge struct {

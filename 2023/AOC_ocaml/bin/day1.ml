@@ -1,3 +1,7 @@
+(* day1.ml *)
+
+module Day1 = struct 
+
 let string_to_list str = str |> String.to_seq |> List.of_seq;;
 
 let rec traitement line = match line with 
@@ -40,3 +44,5 @@ print_endline "";;
 print_int (part1 "inputs/input01.txt");;
 print_endline "";;
 
+
+end
