@@ -6,7 +6,7 @@ from scipy.optimize import fsolve
 """
    j'ai d'abord utilisé solve comme ça ne marchait pas j'ai utilisé fsolve, j'arrivais pas à 
     converger. finalement je me suis rendu compte que j'étais très bête d'utiliser 900 équation
-    alors que seule 3 sont nécéssaire 
+    alors que seule 3 (9) sont nécéssaire 
     je suis revenue a solve et j'ai finit
     vue que c'est juste un système asser symble en vérité je devrais pouvoir le transposé 
     en go facilement. j'y reviandrai probablement demain par contre   
