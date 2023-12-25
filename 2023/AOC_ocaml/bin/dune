@@ -42,3 +42,8 @@
  (name day19)
  (libraries AOC_ocaml_lib)
  (modules Day19))
+
+(executable
+ (name day25)
+ (libraries AOC_ocaml_lib)
+ (modules Day25))

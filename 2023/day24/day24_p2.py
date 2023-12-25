@@ -86,9 +86,6 @@ print("x: ", res[x0])
 print("y: ", res[y0])
 print("z: ", res[z0])
 print("sum :", res[x0] + res[y0] + res[z0])
-print("t1: ", res[t1])
-print("t2: ", res[t2])
-print("t3: ", res[t3])
 
 
 
