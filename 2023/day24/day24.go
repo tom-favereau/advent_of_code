@@ -75,7 +75,8 @@ func part1(string2 string) int {
 	return res / 2
 }
 
-func part1(string2 string) int {
+/*
+func part2(string2 string) int {
 	file, err := os.Open(string2)
 	if err != nil {
 		fmt.Println("erreur")
@@ -113,6 +114,8 @@ func part1(string2 string) int {
 
 	return 0
 }
+
+*/
 
 type Vector struct {
 	x, y, z float64
