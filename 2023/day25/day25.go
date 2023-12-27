@@ -9,18 +9,6 @@ import (
 	"time"
 )
 
-/*
-j'ai voulue faire le dernier jour en caml, je code doit être dans AOC_ocaml/bin/day25.ml
-mon ford fulkerson ne marche pas bien
-
-chat gpt m'a conseillé networkx et ça marche bien.
-j'ai fait en go l'algorithme de wikipedia qui est heuristique, ça marche de temps en temps si on laisse tourné longtemps
-donc pas concluant
-
-je suis pas satisfait du tout de mes deux dernier jour, j'ai l'impression d'avoir juste utilisé
-des module python et que le plus gros problème c'etait de lire la doc (et dialoguer avec chatgpt)
-*/
-
 func main() {
 	fmt.Println(part1("input.txt"))
 	//fmt.Println("///")
@@ -71,65 +59,101 @@ func part1(string2 string) int {
 			addEdge(graph, indexes[k], indexes[u])
 		}
 	}
-	/*
-		res := 0
-		//fmt.Println(dfs(graph, ))
-		//visited := make(map[[2]int]bool)
-		for i := 0; i < ind; i++ {
-			fmt.Println("ok1")
-			for j := i + 1; j < ind; j++ {
-				for k := 0; k < ind; k++ {
-					fmt.Println("ok2")
-					for l := k + 1; l < ind; l++ {
-						if (k != i) || (l != j) {
-							for m := 0; m < ind; m++ {
-								fmt.Println("ok3")
-								for n := m + 1; n < ind; n++ {
-									if ((m != i) || (n != j)) && ((m != k) || (n != l)) {
-										e1 := graph.Edges[i][j]
-										e2 := graph.Edges[k][l]
-										e3 := graph.Edges[m][n]
-										removeEdge(graph, i, j)
-										removeEdge(graph, k, l)
-										removeEdge(graph, m, n)
-										sizes := connectedComponentsSizes(graph)
-										//fmt.Println(sizes)
-										if i == indexes["hfx"] && j == indexes["pzl"] && k == indexes["bvb"] && l == indexes["cmg"] && m == indexes["nvd"] && n == indexes["jqt"] {
-											fmt.Println(sizes)
-											removeEdge(graph, indexes["hfx"], indexes["pzl"])
-											removeEdge(graph, indexes["bvb"], indexes["cmg"])
-											removeEdge(graph, indexes["nvd"], indexes["jqt"])
-											size := connectedComponentsSizes(graph)
-											fmt.Println(size)
-										}
-										if len(sizes) == 2 {
-											res = sizes[0] * sizes[1]
-											return res
-										}
-										graph.Edges[i][j] = e1
-										graph.Edges[j][i] = e1
-										graph.Edges[k][l] = e2
-										graph.Edges[l][k] = e2
-										graph.Edges[m][n] = e3
-										graph.Edges[n][m] = e3
-									}
-								}
-							}
-						}
-					}
+
+	res := solve(graph)
+	return res
+}
+
+func solve(graph *Graph) int {
+
+	freq := make(map[[2]int]int)
+	for startNode := 5; startNode < graph.Vertices; startNode++ {
+		prev := make([]int, graph.Vertices)
+		visited := make([]bool, graph.Vertices)
+		fifo := make([]int, 0, graph.Vertices)
+		fifo = append(fifo, startNode)
+		visited[startNode] = true
+
+		for len(fifo) > 0 {
+			node := fifo[0]
+			fifo = fifo[1:]
+
+			for i := 0; i < graph.Vertices; i++ {
+				if graph.Edges[node][i] == 1 && !visited[i] {
+					visited[i] = true
+					prev[i] = node
+					fifo = append(fifo, i)
 				}
 			}
 		}
-	*/
 
-	//removeEdge(graph, indexes["hfx"], indexes["pzl"])
-	//removeEdge(graph, indexes["bvb"], indexes["cmg"])
-	//removeEdge(graph, indexes["nvd"], indexes["jqt"])
-	//sizes := connectedComponentsSizes(graph)
-	//fmt.Println(sizes)
-	minCutComponents := minCut(graph)
-	fmt.Println(minCutComponents)
-	return minCutComponents[0] * minCutComponents[1]
+		for i := 0; i < graph.Vertices; i++ {
+			node := i
+			for node != startNode {
+				tmp := prev[node]
+				freq[[2]int{Min(tmp, node), Max(node, tmp)}]++
+				node = tmp
+			}
+		}
+		//fmt.Println(freq[[2]int{0, 1}])
+
+	}
+	//fmt.Println(freq)
+	m1 := 0
+	m2 := 0
+	m3 := 0
+	var e1 [2]int
+	var e2 [2]int
+	var e3 [2]int
+	for i := 0; i < len(freq); i++ {
+		for j := 0; j < len(freq); j++ {
+			v := freq[[2]int{i, j}]
+			if v > m1 {
+				m3 = m2
+				e3 = e2
+				m2 = m1
+				e2 = e1
+				m1 = v
+				e1 = [2]int{i, j}
+			} else if v > m2 {
+				m3 = m2
+				e3 = e2
+				m2 = v
+				e2 = [2]int{i, j}
+			} else if v > m3 {
+				m3 = v
+				e3 = [2]int{i, j}
+			}
+		}
+	}
+	/*
+		fmt.Println(m1, e1)
+		fmt.Println(m2, e2)
+		fmt.Println(m3, e3)
+	*/
+	removeEdge(graph, e1[0], e1[1])
+	removeEdge(graph, e2[0], e2[1])
+	removeEdge(graph, e3[0], e3[1])
+
+	c := connectedComponentsSizes(graph)
+	//fmt.Println(c)
+	return c[0] * c[1]
+}
+
+func Min(a, b int) int {
+	if a < b {
+		return a
+	} else {
+		return b
+	}
+}
+
+func Max(a, b int) int {
+	if a > b {
+		return a
+	} else {
+		return b
+	}
 }
 
 type Graph struct {
@@ -142,10 +166,14 @@ func newGraph(vertices int) *Graph {
 	graph := &Graph{
 		Vertices: vertices,
 		Edges:    make([][]int, vertices),
+		val:      make([]int, vertices),
 	}
 
 	for i := range graph.Edges {
 		graph.Edges[i] = make([]int, vertices)
+	}
+	for i := range graph.val {
+		graph.val[i] = 1
 	}
 
 	return graph
@@ -224,8 +252,8 @@ func minCut(graph *Graph) [2]int {
 
 		ind++
 		if ind > 10000000 {
-			fmt.Println(tempGraph.Vertices)
-			fmt.Println(tempGraph.val)
+			//fmt.Println(tempGraph.Vertices)
+			//fmt.Println(tempGraph.val)
 			break
 		}
 
@@ -259,7 +287,7 @@ func minCut(graph *Graph) [2]int {
 		contractedEdges = append(contractedEdges, []int{src, dest})
 		tempGraph.Vertices--
 	}
-	fmt.Println(tempGraph.val, tempGraph.val[0]*tempGraph.val[1])
+	//fmt.Println(tempGraph.val, tempGraph.val[0]*tempGraph.val[1])
 
 	return [2]int{tempGraph.val[0], tempGraph.val[1]}
 }
