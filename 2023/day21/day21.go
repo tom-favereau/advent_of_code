@@ -29,6 +29,13 @@ func part1(string2 string) int {
 	}
 	defer file.Close()
 
+	var stepMax int
+	if string2 == "input.txt" {
+		stepMax = 64
+	} else {
+		stepMax = 6
+	}
+
 	scanner := bufio.NewScanner(file)
 	g := make([][]string, 0)
 	i := 0
@@ -46,21 +53,19 @@ func part1(string2 string) int {
 		g = append(g, tmp)
 		i++
 	}
-
-	vis := make(map[Visit]bool)
-	solve(g, ps, 0, vis)
-	res := 0
-	tmp := make(map[P]bool)
-	for k, _ := range vis {
-		if k.index%2 == 0 {
-			if !tmp[k.p] {
-				//fmt.Println(k.p.i, " ", k.p.j)
+	/*
+		vis := make(map[P]bool)
+		solve(g, ps, 0, vis)
+		res := 0
+		//tmp := make(map[P]bool)
+		for k, _ := range vis {
+			if (k.i+k.j)%2 == 0 {
 				res++
-				tmp[k.p] = true
 			}
 		}
-	}
 
+	*/
+	res := solve(g, ps, stepMax)
 	return res
 }
 
@@ -115,50 +120,15 @@ type P struct {
 func solveP24real(g [][]string, ps P) int {
 	sizeDiamond := 26501365 / len(g) //203200
 	end := 26501365 % len(g)         // 65
-	vis := make(map[Visit]bool)
-	solve2(g, ps, 0, vis, end)
-	firstPoint := 0
-	tmp := make(map[P]bool)
-	for k, _ := range vis {
-		if k.index%2 == 1 {
-			if !tmp[k.p] {
-				//fmt.Println(k.p.i, " ", k.p.j)
-				firstPoint++
-				tmp[k.p] = true
-			}
-		}
-	}
-	vis = make(map[Visit]bool)
-	solve2(g, ps, 0, vis, len(g)+end)
-	secondPoint := 0
-	tmp = make(map[P]bool)
-	for k, _ := range vis {
-		if k.index%2 == 1 {
-			if !tmp[k.p] {
-				//fmt.Println(k.p.i, " ", k.p.j)
-				secondPoint++
-				tmp[k.p] = true
-			}
-		}
-	}
-	vis = make(map[Visit]bool)
-	solve2(g, ps, 0, vis, 2*len(g)+end)
-	thirdPoint := 0
-	tmp = make(map[P]bool)
-	for k, _ := range vis {
-		if k.index%2 == 1 {
-			if !tmp[k.p] {
-				//fmt.Println(k.p.i, " ", k.p.j)
-				thirdPoint++
-				tmp[k.p] = true
-			}
-		}
-	}
+
+	firstPoint := solve(g, ps, end)
+	secondPoint := solve(g, ps, 2*len(g)+end)
+	thirdPoint := solve(g, ps, 4*len(g)+end)
 
 	x := []float64{0, 1, 2}
 	y := []float64{float64(firstPoint), float64(secondPoint), float64(thirdPoint)}
 	//fmt.Println(lagrangeInterpolation(x, y, float64(x0)))
-	res := lagrangeInterpolation(x, y, float64(sizeDiamond))
+	res := lagrangeInterpolation(x, y, float64(sizeDiamond+end))
 
 	return int(res)
 }
@@ -208,20 +178,59 @@ func f(g [][]string, p P, impair int) int {
 	return i - 1
 }
 
-func solve(g [][]string, p P, index int, vis map[Visit]bool) {
+/*
+func solve(g [][]string, p P, index int, vis map[P]bool) {
 	i := p.i
 	j := p.j
-	if i >= 0 && i < len(g) && j >= 0 && j < len(g[0]) && index <= 64 {
+	if i >= 0 && i < len(g) && j >= 0 && j < len(g[0]) && index <= 6 {
 
 		cur := g[i][j]
-		if (cur == "S" || cur == ".") && !vis[Visit{p, index}] {
-			vis[Visit{p, index}] = true
+		if (cur == "S" || cur == ".") && !vis[p] {
+			vis[p] = true
 			solve(g, P{i + 1, j}, index+1, vis)
 			solve(g, P{i, j + 1}, index+1, vis)
 			solve(g, P{i - 1, j}, index+1, vis)
 			solve(g, P{i, j - 1}, index+1, vis)
 		}
 	}
+}
+
+*/
+
+func solve(g [][]string, start P, stepMax int) int {
+	queue := make([]Visit, 0, stepMax*stepMax)
+	queue = append(queue, Visit{start, 0})
+	visited := make(map[P]bool)
+	for len(queue) > 0 {
+		cur := queue[0]
+		i := cur.p.i % len(g)
+		if i < 0 {
+			i += len(g)
+		}
+		j := cur.p.j % len(g)
+		if j < 0 {
+			j += len(g)
+		}
+		symb := g[i][j]
+		queue = queue[1:]
+
+		if (symb == "S" || symb == ".") && !visited[cur.p] {
+			visited[cur.p] = true
+			if cur.index < stepMax {
+				queue = append(queue, Visit{P{cur.p.i + 1, cur.p.j}, cur.index + 1})
+				queue = append(queue, Visit{P{cur.p.i, cur.p.j + 1}, cur.index + 1})
+				queue = append(queue, Visit{P{cur.p.i - 1, cur.p.j}, cur.index + 1})
+				queue = append(queue, Visit{P{cur.p.i, cur.p.j - 1}, cur.index + 1})
+			}
+		}
+	}
+	res := 0
+	for p, val := range visited {
+		if val && (p.i+p.j)%2 == stepMax%2 {
+			res++
+		}
+	}
+	return res
 }
 
 func solve2(g [][]string, p P, index int, vis map[Visit]bool, indM int) {

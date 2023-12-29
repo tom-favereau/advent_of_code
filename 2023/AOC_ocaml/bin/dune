@@ -1,9 +1,11 @@
 (executable
+ (public_name d1)
  (name day1)
  (libraries AOC_ocaml_lib)
  (modules Day1))
 
 (executable
+ (public_name d2)
  (name day2)
  (libraries AOC_ocaml_lib)
  (modules Day2))
@@ -22,6 +24,14 @@
  (name day4oneline)
  (libraries AOC_ocaml_lib)
  (modules Day4oneline))
+
+
+
+(executable
+ (public_name d7)
+ (name day7)
+ (libraries AOC_ocaml_lib)
+ (modules Day7))
 
 (executable
  (name day12)

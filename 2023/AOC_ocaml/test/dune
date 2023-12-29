@@ -1,1 +1,4 @@
-
+(test
+ (name day7_test)
+ (libraries AOC_ocaml_lib alcotest)
+ )
