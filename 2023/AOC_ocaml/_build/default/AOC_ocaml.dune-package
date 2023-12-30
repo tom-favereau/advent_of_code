@@ -1,0 +1,45 @@
+(lang dune 3.12)
+(name AOC_ocaml)
+(sections (lib .) (libexec .) (bin ../../bin))
+(files
+ (lib
+  (AOC_ocaml_lib.a
+   AOC_ocaml_lib.cma
+   AOC_ocaml_lib.cmxa
+   META
+   aOC_ocaml_lib.cmi
+   aOC_ocaml_lib.cmt
+   aOC_ocaml_lib.cmx
+   aOC_ocaml_lib.ml
+   aOC_ocaml_lib__Utils.cmi
+   aOC_ocaml_lib__Utils.cmt
+   aOC_ocaml_lib__Utils.cmx
+   dune-package
+   opam
+   utils.ml))
+ (libexec (AOC_ocaml_lib.cmxs))
+ (bin (d1 d2 d20 d21 d7)))
+(library
+ (name AOC_ocaml)
+ (kind normal)
+ (archives (byte AOC_ocaml_lib.cma) (native AOC_ocaml_lib.cmxa))
+ (plugins (byte AOC_ocaml_lib.cma) (native AOC_ocaml_lib.cmxs))
+ (native_archives AOC_ocaml_lib.a)
+ (requires str ocamlgraph)
+ (main_module_name AOC_ocaml_lib)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name aOC_ocaml_lib)
+     (visibility public)
+     (kind alias)
+     (source (path AOC_ocaml_lib) (impl (path aOC_ocaml_lib.ml-gen))))
+    (name AOC_ocaml_lib)
+    (modules
+     (module
+      (obj_name aOC_ocaml_lib__Utils)
+      (visibility public)
+      (source (path Utils) (impl (path utils.ml))))))
+   (wrapped true))))

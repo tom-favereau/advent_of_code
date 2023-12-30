@@ -1,0 +1,26 @@
+lib: [
+  "_build/install/default/lib/AOC_ocaml/AOC_ocaml_lib.a"
+  "_build/install/default/lib/AOC_ocaml/AOC_ocaml_lib.cma"
+  "_build/install/default/lib/AOC_ocaml/AOC_ocaml_lib.cmxa"
+  "_build/install/default/lib/AOC_ocaml/META"
+  "_build/install/default/lib/AOC_ocaml/aOC_ocaml_lib.cmi"
+  "_build/install/default/lib/AOC_ocaml/aOC_ocaml_lib.cmt"
+  "_build/install/default/lib/AOC_ocaml/aOC_ocaml_lib.cmx"
+  "_build/install/default/lib/AOC_ocaml/aOC_ocaml_lib.ml"
+  "_build/install/default/lib/AOC_ocaml/aOC_ocaml_lib__Utils.cmi"
+  "_build/install/default/lib/AOC_ocaml/aOC_ocaml_lib__Utils.cmt"
+  "_build/install/default/lib/AOC_ocaml/aOC_ocaml_lib__Utils.cmx"
+  "_build/install/default/lib/AOC_ocaml/dune-package"
+  "_build/install/default/lib/AOC_ocaml/opam"
+  "_build/install/default/lib/AOC_ocaml/utils.ml"
+]
+libexec: [
+  "_build/install/default/lib/AOC_ocaml/AOC_ocaml_lib.cmxs"
+]
+bin: [
+  "_build/install/default/bin/d1"
+  "_build/install/default/bin/d2"
+  "_build/install/default/bin/d20"
+  "_build/install/default/bin/d21"
+  "_build/install/default/bin/d7"
+]
