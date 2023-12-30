@@ -1,6 +1,0 @@
-description = ""
-requires = "ocamlgraph str"
-archive(byte) = "AOC_ocaml_lib.cma"
-archive(native) = "AOC_ocaml_lib.cmxa"
-plugin(byte) = "AOC_ocaml_lib.cma"
-plugin(native) = "AOC_ocaml_lib.cmxs"

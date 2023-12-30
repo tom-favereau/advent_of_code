@@ -1,4 +1,0 @@
-(library
- (name AOC_ocaml_lib)
- (public_name AOC_ocaml)
- (libraries str))
