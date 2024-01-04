@@ -16,6 +16,7 @@
  (modules Day3))
 
 (executable
+ (public_name d4)
  (name day4)
  (libraries AOC_ocaml_lib)
  (modules Day4))
@@ -31,10 +32,32 @@
  (libraries AOC_ocaml_lib)
  (modules Day7))
 
+
+(executable
+ (public_name d10)
+ (name day10)
+ (libraries AOC_ocaml_lib)
+ (modules Day10))
+
+
 (executable
  (name day12)
  (libraries AOC_ocaml_lib)
  (modules Day12))
+
+
+(executable
+ (public_name d13)
+ (name day13)
+ (libraries AOC_ocaml_lib)
+ (modules Day13))
+
+(executable
+ (public_name d14)
+ (name day14)
+ (libraries AOC_ocaml_lib)
+ (modules Day14))
+
 
 (executable
  (name day15)
@@ -56,7 +79,6 @@
  (name day20)
  (libraries AOC_ocaml_lib)
  (modules Day20))
-
 
 
 (executable

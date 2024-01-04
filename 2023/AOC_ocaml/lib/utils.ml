@@ -37,6 +37,8 @@ module Pars : sig
 
   val split : string -> string -> string list
 
+  val read_to_matrix : string -> string array array option
+
 end = struct 
 
 
@@ -67,6 +69,20 @@ end = struct
       Some content
     with 
     | Sys_error err -> (print_endline ("Error: " ^ err); None)
+
+  let read_to_matrix : string -> string array array option = fun file_name -> 
+    match (read_lines file_name) with 
+      | None -> None
+      | Some lines -> 
+        let n = List.length lines in
+        let m = lines |> List.hd |> String.length in
+        let res = Array.make_matrix n m "" in
+        List.iteri (fun i line -> 
+          List.iteri (fun j elem -> res.(n-i-1).(j) <- elem) (split line "")
+        ) lines; 
+        Some res
+
+  
 end 
 
 module Debug : sig 

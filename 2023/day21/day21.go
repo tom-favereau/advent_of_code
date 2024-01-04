@@ -122,10 +122,10 @@ func solveP24real(g [][]string, ps P) int {
 	end := 26501365 % len(g)         // 65
 
 	firstPoint := solve(g, ps, end)
-	secondPoint := solve(g, ps, 2*len(g)+end)
-	thirdPoint := solve(g, ps, 4*len(g)+end)
+	secondPoint := solve(g, ps, 1*len(g)+end)
+	thirdPoint := solve(g, ps, 2*len(g)+end)
 
-	x := []float64{0, 1, 2}
+	x := []float64{0, 2, 4}
 	y := []float64{float64(firstPoint), float64(secondPoint), float64(thirdPoint)}
 	//fmt.Println(lagrangeInterpolation(x, y, float64(x0)))
 	res := lagrangeInterpolation(x, y, float64(sizeDiamond+end))
@@ -200,7 +200,7 @@ func solve(g [][]string, p P, index int, vis map[P]bool) {
 func solve(g [][]string, start P, stepMax int) int {
 	queue := make([]Visit, 0, stepMax*stepMax)
 	queue = append(queue, Visit{start, 0})
-	visited := make(map[P]bool)
+	visited := make(map[Visit]bool)
 	for len(queue) > 0 {
 		cur := queue[0]
 		i := cur.p.i % len(g)
@@ -214,8 +214,8 @@ func solve(g [][]string, start P, stepMax int) int {
 		symb := g[i][j]
 		queue = queue[1:]
 
-		if (symb == "S" || symb == ".") && !visited[cur.p] {
-			visited[cur.p] = true
+		if (symb == "S" || symb == ".") && !visited[cur] {
+			visited[cur] = true
 			if cur.index < stepMax {
 				queue = append(queue, Visit{P{cur.p.i + 1, cur.p.j}, cur.index + 1})
 				queue = append(queue, Visit{P{cur.p.i, cur.p.j + 1}, cur.index + 1})
@@ -225,9 +225,11 @@ func solve(g [][]string, start P, stepMax int) int {
 		}
 	}
 	res := 0
+	counted := make(map[P]bool)
 	for p, val := range visited {
-		if val && (p.i+p.j)%2 == stepMax%2 {
+		if val && (p.p.i+p.p.j)%2 == stepMax%2 && !counted[p.p] {
 			res++
+			counted[p.p] = true
 		}
 	}
 	return res
