@@ -34,6 +34,13 @@
 
 
 (executable
+ (public_name d8)
+ (name day8)
+ (libraries AOC_ocaml_lib)
+ (modules Day8))
+
+
+(executable
  (public_name d9)
  (name day9)
  (libraries AOC_ocaml_lib)
