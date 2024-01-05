@@ -26,6 +26,7 @@
  (libraries AOC_ocaml_lib)
  (modules Day4oneline))
 
+
 (executable
  (public_name d7)
  (name day7)
@@ -74,6 +75,7 @@
 
 
 (executable
+ (public_name d15)
  (name day15)
  (libraries AOC_ocaml_lib)
  (modules Day15))

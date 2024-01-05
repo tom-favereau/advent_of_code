@@ -1,54 +1,37 @@
 open AOC_ocaml_lib.Utils
 
-module Dgraph = Graph.Imperative.Digraph.ConcreteBidirectional (struct
-  type t = string
-  let compare = compare
-  let hash = Hashtbl.hash
-  let equal = (=)   
-end)
-
-
 module Day20 : sig 
   val part1 : string -> int 
+
 end = struct
-  (*
-  type state = {name : string; sym : string; up : bool}
-  *)
-  let print_graph graph =
-    Dgraph.iter_vertex (fun vertex -> Printf.printf "Sommet : %s\n" vertex) graph;
-    Dgraph.iter_edges (fun source target -> Printf.printf "Arête : %s -> %s\n" source target) graph
+(*
+  type info = {
+    mutable on : int;
+    mutable prev : bool list;
+  }
+  
+  let count graph types = 
+  *)  
 
-  (*
-  let bfs : Dgraph.t -> (int * int) = fun graph -> 
-    let queue = Queue.create () in  
-    Queue.add "broadcaster" queue;
-    (0, 0)
-   *)
-  let part1 : string -> int = fun file_name -> 
+  let part1 file_name = 
     let lines = match Pars.read_lines file_name with 
-          | None -> failwith "name file"
-          | Some thing -> thing
+      | None -> failwith "parsing" 
+      | Some lines -> lines 
     in
-    let graph = Dgraph.create ~size:(List.length lines) () in
-    let vert = Hashtbl.create (List.length lines) in
-    List.iter (fun elem ->
-    let node, dest = match (Pars.split elem " -> ") with 
-      | [nod; des] ->  let label = if nod <> "broadcaster" then Str.string_before nod 1 else "" in 
-                        let nod' = if nod <> "broadcaster" then Str.string_after nod 1 else nod in 
-        (Hashtbl.add vert nod' label ; Dgraph.add_vertex graph nod'; nod', des) 
-      | l -> (List.iter print_string l; failwith "parsing") 
-    in  
-    List.iter (fun elem' -> 
-        (if not (Dgraph.mem_vertex graph elem') 
-          then (Dgraph.add_vertex graph elem'); 
-        Dgraph.add_edge graph node elem') 
-      ) (Pars.split dest ", ")
+    let graph = Hashtbl.create (List.length lines) in    
+    let types = Hashtbl.create (List.length lines) in
+    List.iter (fun line -> 
+      let sep = Pars.split line " -> " in
+      let node = if List.hd sep = "broadcaster" then List.hd sep 
+      else Str.string_after (List.hd sep) 1 in
+      let dest = Pars.split (sep |> List.tl |> List.hd) ", " in
+      List.iter (fun d -> Hashtbl.add graph node d) dest;
+      Hashtbl.add types node (List.hd sep).[0];
     ) lines;
-    (print_graph graph;
-    let module Bfs = Graph.Traverse.Bfs(Dgraph) in
-    0)
+    Hashtbl.iter (fun key value -> Printf.printf "%s -> %s \n" key value) graph;
+    0
 
-end 
+end
 
 
 let () =
