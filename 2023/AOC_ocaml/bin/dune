@@ -80,6 +80,13 @@
  (libraries AOC_ocaml_lib)
  (modules Day15))
 
+
+(executable
+ (public_name d16)
+ (name day16)
+ (libraries AOC_ocaml_lib)
+ (modules Day16))
+
 (executable
  (name day18)
  (libraries AOC_ocaml_lib)
