@@ -156,13 +156,9 @@ let () =
   if Array.length Sys.argv <> 2 then begin
     Printf.printf "Usage: %s <filename>\n" Sys.argv.(0);
     exit 1;
-  end else begin
+  end else
     let file_name = Sys.argv.(1) in
     let r1 = Day7.part1 file_name in 
     let r2 = Day7.part2 file_name in 
-    (print_int r1; print_newline (); print_int r2; print_newline ())
-
-
-    
-  end
+    (print_int r1; print_newline (); print_int r2; print_newline ())    
 

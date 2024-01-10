@@ -2,6 +2,6 @@
 (library
  (name AOC_ocaml_lib)
  (public_name AOC_ocaml)
- (libraries str ocamlgraph)
+ (libraries str ocamlgraph containers alcotest)
  (modules utils))
 

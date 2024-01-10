@@ -57,15 +57,7 @@ end = struct
     let i = ref (-1) in
     let continuer = ref true in
     while !i < 1000000000  && !continuer do 
-      (
-      matrix := roll !matrix;
-      matrix := rotate !matrix;
-      matrix := roll !matrix;
-      matrix := rotate !matrix;
-      matrix := roll !matrix;
-      matrix := rotate !matrix;
-      matrix := roll !matrix;
-      matrix := rotate !matrix;
+      for _ = 0 to 3 do begin matrix := roll !matrix; matrix := rotate !matrix end done;
       i := !i+1;
       let s = mat_to_string !matrix in
       if Hashtbl.mem config s then
@@ -74,9 +66,7 @@ end = struct
         (
         res := Hashtbl.find scores (tmp+index);
         continuer := false)
-      else (Hashtbl.add config s !i; Hashtbl.add scores !i (score !matrix); 
-      )
-    )
+      else (Hashtbl.add config s !i; Hashtbl.add scores !i (score !matrix))
     done;
     !res
 
